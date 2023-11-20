@@ -9,9 +9,9 @@ router = APIRouter(tags=["Login"])
 
 
 @router.post("/login", status_code=status.HTTP_202_ACCEPTED, response_model=schemas.Token)
-def user_login(email: EmailStr = Form(...), password: str = Form(...), db: Session = Depends(database.get_db)):
+def user_login(username: EmailStr = Form(...), password: str = Form(...), db: Session = Depends(database.get_db)):
     exist_user = db.query(models.User).filter(
-        models.User.email == email).first()
+        models.User.email == username).first()
     if not exist_user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Email not found")
