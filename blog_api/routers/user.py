@@ -29,17 +29,17 @@ async def user_create(full_name:str=Form(...), email:EmailStr=Form(...), passwor
             status_code=status.HTTP_400_BAD_REQUEST, detail=str(error))
 
 
-@router.get("/users_list", status_code=status.HTTP_302_FOUND, response_model=list[schemas.UserResponse])
-async def users_list(db: Session = Depends(database.get_db)):
-    try:
-        users = db.query(models.User).all()
-        return users
-    except Exception as error:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail=str(error))
+# @router.get("/users_list", status_code=status.HTTP_200_OK, response_model=list[schemas.UserResponse])
+# async def users_list(db: Session = Depends(database.get_db)):
+#     try:
+#         users = db.query(models.User).all()
+#         return users
+#     except Exception as error:
+#         raise HTTPException(
+#             status_code=status.HTTP_400_BAD_REQUEST, detail=str(error))
 
 
-@router.get("/user_details", status_code=status.HTTP_302_FOUND, response_model=schemas.UserResponse)
+@router.get("/user_details", status_code=status.HTTP_200_OK, response_model=schemas.UserResponse)
 async def user_details(db: Session = Depends(database.get_db), current_user_email: str = Depends(oauth.get_current_user)):
     try:
         current_user = current_user_email.email
