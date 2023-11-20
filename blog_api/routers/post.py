@@ -42,12 +42,21 @@ def post_blog(
         )
 
 # functionality for getting all post
-@router.get("/get_blogs", status_code=status.HTTP_200_OK, response_model=List[schemas.PostReponse])
-def get_blogs(db: Session = Depends(database.get_db), current_user_email: str = Depends(oauth.get_current_user)):
+@router.get("/get_personal_blogs", status_code=status.HTTP_200_OK, response_model=List[schemas.PostReponse])
+def get_personal_blogs(db: Session = Depends(database.get_db), current_user_email: str = Depends(oauth.get_current_user)):
     try:
 
         all_blog_post = db.query(models.Post).filter(
             models.Post.user_email == current_user_email.email)
+        return all_blog_post
+    except Exception as error:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=str(error))
+
+@router.get("/get_all_random_blogs", status_code=status.HTTP_200_OK, response_model=List[schemas.PostReponse])
+def get_all_blogs(db: Session = Depends(database.get_db)):
+    try:
+        all_blog_post = db.query(models.Post).all()
         return all_blog_post
     except Exception as error:
         raise HTTPException(
