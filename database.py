@@ -4,9 +4,10 @@ from sqlalchemy.orm import sessionmaker
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@postgresserver/blog-app"
-SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://postgres:2gb*-*cB-A4*4dE1EDgG34-A-D3E3cbd@monorail.proxy.rlwy.net:58473/railway"
+SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://default:jhQA0Wvtp9iG@ep-steep-wave-93343993-pooler.us-east-1.postgres.vercel-storage.com/verceldb"
 
 
+# Connect to databas
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )
