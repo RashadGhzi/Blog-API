@@ -30,7 +30,6 @@ class PostReponse(BaseModel):
     id: int
     title: str
     content: str
-    file: str
     user_email: str
     created_at: datetime
     updated_at: datetime

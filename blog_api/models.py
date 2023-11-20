@@ -8,7 +8,7 @@ class Post(database.Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     content = Column(Text, nullable=False)
-    file = Column(String, nullable=False)
+    file = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.now())
     updated_at = Column(DateTime, default=datetime.now())
     user_email = Column(String, ForeignKey(

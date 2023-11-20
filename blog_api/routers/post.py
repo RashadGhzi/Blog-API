@@ -18,7 +18,10 @@ def post_blog(
     current_user_email: str = Depends(oauth.get_current_user),
 ):
     try:
-        file_path = file_upload.file_or_image_upload("blog",file_data)
+        if file_data:
+            file_path = file_upload.file_or_image_upload("blog",file_data)
+        else:
+            file_path = None
         new_post = models.Post(
             title=title,
             content=content,
