@@ -13,7 +13,7 @@ router = APIRouter(tags=["Post"])
 def post_blog(
     title: str = Form(...),
     content: str = Form(...),
-    file_data: UploadFile = File(...),
+    file_data: UploadFile = File(None),
     db: Session = Depends(database.get_db),
     current_user_email: str = Depends(oauth.get_current_user),
 ):
